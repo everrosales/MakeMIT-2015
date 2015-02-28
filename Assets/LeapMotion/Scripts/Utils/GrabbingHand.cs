@@ -13,10 +13,12 @@ using Leap;
 
 // Leap Motion hand script that detects pinches and grabs the closest rigidbody.
 public class GrabbingHand : MonoBehaviour {
-  public static string comPort = "COM4";
-  public static SerialPort sp = new SerialPort(comPort, 9600, Parity.None, 8, StopBits.One);
+	public static string comPort = "/dev/tty.usbmodem1411";
+  public static string[] names = SerialPort.GetPortNames();
+	public static SerialPort sp = new SerialPort (comPort, 9600, Parity.None, 8, StopBits.One);
   public static string strIn;
-	public static bool freezeMove = false;
+  public static bool freezeMove = false;
+ 
 
   public enum PinchState {
     kPinched,
@@ -67,6 +69,11 @@ public class GrabbingHand : MonoBehaviour {
   protected Quaternion palm_rotation_;
 
   void Start() {
+    /*if (name.Length > 0) {
+		sp = new SerialPort (names [0], 9600, Parity.None, 8, StopBits.One);
+	} else { 
+		sp = new SerialPort ("COM4", 9600, Parity.None, 8, StopBits.One);
+		}*/
 	OpenConnection ();
     pinch_state_ = PinchState.kReleased;
     active_object_ = null;
@@ -104,8 +111,10 @@ public class GrabbingHand : MonoBehaviour {
   void Update() {
 		//Writing magic.s
 		try {
-			sp.Write ("0x00");
-		} catch (System.InvalidOperationException) {}
+			sp.Write (new Byte[1] {0x00}, 0, 1);
+		} catch (System.InvalidOperationException) {
+			print ("cant find com port");
+		}
 	}
 
   void OnApplicationQuit() {
@@ -202,8 +211,9 @@ public class GrabbingHand : MonoBehaviour {
       grabbable.OnGrab();
       // Write out serial out
 	  try {
-		  sp.Write("0xFF");
+				sp.Write(new Byte[1] {0xFF}, 0, 1);
 			} catch (System.InvalidOperationException) {
+				print("cant find com port");
 			}
       if (grabbable.useAxisAlignment) {
         // If this option is enabled we only want to align the object axis with the palm axis
@@ -229,8 +239,9 @@ public class GrabbingHand : MonoBehaviour {
       if (grabbable != null) {
         grabbable.OnRelease();
 			try {
-				sp.Write("0x33");
+					sp.Write(new Byte[1] {0x11}, 0, 1);
 				} catch (System.InvalidOperationException) {
+					print("cant find com port");
 				}
 			}
       if (grabbable == null || grabbable.rotateQuickly)
