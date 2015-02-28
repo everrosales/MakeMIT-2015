@@ -6,10 +6,17 @@
 
 using UnityEngine;
 using System.Collections;
+using System.IO.Ports;
+using System;
+using System.Threading;
 using Leap;
 
 // Leap Motion hand script that detects pinches and grabs the closest rigidbody.
 public class GrabbingHand : MonoBehaviour {
+  public static string comPort = "COM4";
+  public static SerialPort sp = new SerialPort(comPort, 9600, Parity.None, 8, StopBits.One);
+  public static string strIn;
+	public static bool freezeMove = false;
 
   public enum PinchState {
     kPinched,
@@ -27,7 +34,7 @@ public class GrabbingHand : MonoBehaviour {
   public float releaseTriggerDistance = 1.2f;
 
   // Maximum distance of an object that we can grab when pinching.
-  public float grabObjectDistance = 2.0f;
+  public float grabObjectDistance = 1.0f;
 
   // If the object gets far from the pinch we'll break the bond.
   public float releaseBreakDistance = 0.3f;
@@ -60,6 +67,7 @@ public class GrabbingHand : MonoBehaviour {
   protected Quaternion palm_rotation_;
 
   void Start() {
+	OpenConnection ();
     pinch_state_ = PinchState.kReleased;
     active_object_ = null;
     last_max_angular_velocity_ = 0.0f;
@@ -72,6 +80,36 @@ public class GrabbingHand : MonoBehaviour {
 
   void OnDestroy() {
     OnRelease();
+  }
+
+  public void OpenConnection() {
+	if (sp != null) {
+		if (sp.IsOpen) {
+				sp.Close();
+				//message = "Closing port";
+		} else {
+				sp.Open ();
+				sp.ReadTimeout = 50;
+				//message = "Port Opened!";
+		}
+	} else {
+		if (sp.IsOpen) {
+			print("Port is opened");
+		} else {
+			print("Port == null");
+		}
+	}
+  }
+
+  void Update() {
+		//Writing magic.s
+		try {
+			sp.Write ("0x00");
+		} catch (System.InvalidOperationException) {}
+	}
+
+  void OnApplicationQuit() {
+		sp.Close ();
   }
 
   // Finds the closest grabbable object within range of the pinch.
@@ -162,7 +200,11 @@ public class GrabbingHand : MonoBehaviour {
     if (grabbable != null) {
       // Notify grabbable object that it was grabbed.
       grabbable.OnGrab();
-
+      // Write out serial out
+	  try {
+		  sp.Write("0xFF");
+			} catch (System.InvalidOperationException) {
+			}
       if (grabbable.useAxisAlignment) {
         // If this option is enabled we only want to align the object axis with the palm axis
         // so we'll cancel out any rotation about the aligned axis.
@@ -184,9 +226,13 @@ public class GrabbingHand : MonoBehaviour {
     if (active_object_ != null) {
       // Notify the grabbable object that is was released.
       GrabbableObject grabbable = active_object_.GetComponent<GrabbableObject>();
-      if (grabbable != null)
+      if (grabbable != null) {
         grabbable.OnRelease();
-
+			try {
+				sp.Write("0x33");
+				} catch (System.InvalidOperationException) {
+				}
+			}
       if (grabbable == null || grabbable.rotateQuickly)
         active_object_.rigidbody.maxAngularVelocity = last_max_angular_velocity_;
 
