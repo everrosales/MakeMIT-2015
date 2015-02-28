@@ -1,0 +1,53 @@
+Base path: /Applications/Unity/Unity.app/Contents
+Pipe name: \\.\pipe\UnityShaderCompiler-1--1599217196
+Cmd: getPlatforms
+Cmd: preprocess
+  insize=1725 outsize=1007 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=1020 outsize=397 kw= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=1020 outsize=290 kw= ok=1
+Cmd: preprocess
+  insize=1584 outsize=2244 ok=1
+Cmd: preprocess
+  insize=1423 outsize=2191 ok=1
+Cmd: preprocess
+  insize=464 outsize=464 ok=1
+Cmd: preprocess
+  insize=1101 outsize=904 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=4844 outsize=919 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=4844 outsize=445 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=2883 outsize=817 kw=POINT ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=2883 outsize=666 kw=POINT ok=1
+Cmd: preprocess
+  insize=1406 outsize=457 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=1248 outsize=428 kw= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=1248 outsize=486 kw= ok=1
+Cmd: preprocess
+  insize=1654 outsize=1035 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=898 outsize=635 kw= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=898 outsize=84 kw= ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=864 outsize=635 kw= ok=1
+Cmd: preprocess
+  insize=2451 outsize=490 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=2260 outsize=428 kw= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=2260 outsize=1086 kw= ok=1
+Cmd: preprocess
+  insize=1574 outsize=702 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=1174 outsize=547 kw= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=1174 outsize=333 kw= ok=1
+Cmd: preprocess
+  insize=824 outsize=821 ok=1
