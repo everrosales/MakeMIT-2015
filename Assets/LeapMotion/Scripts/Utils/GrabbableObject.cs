@@ -6,6 +6,8 @@
 
 using UnityEngine;
 using System.Collections;
+using System.IO.Ports;
+using System;
 
 public class GrabbableObject : MonoBehaviour {
 
@@ -39,11 +41,19 @@ public class GrabbableObject : MonoBehaviour {
     hovered_ = false;
   }
 
-  public virtual void OnGrab() {
+  public virtual void OnGrab(SerialPort sp) {
     grabbed_ = true;
     hovered_ = false;
-
-    if (breakableJoint != null) {
+	
+	// Write out serial out
+	try {
+		sp.Write(new Byte[1] {0xFF}, 0, 1);
+		print ("grabbed");
+	} catch (System.InvalidOperationException) {
+		print("cant find com port");
+    }
+        
+        if (breakableJoint != null) {
       Joint breakJoint = breakableJoint.GetComponent<Joint>();
       if (breakJoint != null) {
         breakJoint.breakForce = breakForce;
@@ -52,10 +62,16 @@ public class GrabbableObject : MonoBehaviour {
     }
   }
 
-  public virtual void OnRelease() {
+  public virtual void OnRelease(SerialPort sp) {
     grabbed_ = false;
 
-    if (breakableJoint != null) {
+	try {
+		sp.Write(new Byte[1] {0x11}, 0, 1);
+	} catch (System.InvalidOperationException) {
+		print("cant find com port");
+    }
+        
+        if (breakableJoint != null) {
       Joint breakJoint = breakableJoint.GetComponent<Joint>();
       if (breakJoint != null) {
         breakJoint.breakForce = Mathf.Infinity;

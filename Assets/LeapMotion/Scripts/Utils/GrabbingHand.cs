@@ -13,9 +13,8 @@ using Leap;
 
 // Leap Motion hand script that detects pinches and grabs the closest rigidbody.
 public class GrabbingHand : MonoBehaviour {
-	public static string comPort = "/dev/tty.usbmodem1411";
   public static string[] names = SerialPort.GetPortNames();
-	public static SerialPort sp = new SerialPort (comPort, 9600, Parity.None, 8, StopBits.One);
+  public static SerialPort sp = new SerialPort (names[0], 9600, Parity.None, 8, StopBits.One);
   public static string strIn;
   public static bool freezeMove = false;
  
@@ -30,7 +29,7 @@ public class GrabbingHand : MonoBehaviour {
   public LayerMask grabbableLayers = ~0;
 
   // Ratio of the length of the proximal bone of the thumb that will trigger a pinch.
-  public float grabTriggerDistance = 0.7f;
+  public float grabTriggerDistance = .7f;
 
   // Ratio of the length of the proximal bone of the thumb that will trigger a release.
   public float releaseTriggerDistance = 1.2f;
@@ -74,7 +73,9 @@ public class GrabbingHand : MonoBehaviour {
 	} else { 
 		sp = new SerialPort ("COM4", 9600, Parity.None, 8, StopBits.One);
 		}*/
-	OpenConnection ();
+	if (!sp.IsOpen) {
+			OpenConnection ();
+		}
     pinch_state_ = PinchState.kReleased;
     active_object_ = null;
     last_max_angular_velocity_ = 0.0f;
@@ -208,13 +209,8 @@ public class GrabbingHand : MonoBehaviour {
 
     if (grabbable != null) {
       // Notify grabbable object that it was grabbed.
-      grabbable.OnGrab();
-      // Write out serial out
-	  try {
-				sp.Write(new Byte[1] {0xFF}, 0, 1);
-			} catch (System.InvalidOperationException) {
-				print("cant find com port");
-			}
+      grabbable.OnGrab(sp);
+
       if (grabbable.useAxisAlignment) {
         // If this option is enabled we only want to align the object axis with the palm axis
         // so we'll cancel out any rotation about the aligned axis.
@@ -237,12 +233,7 @@ public class GrabbingHand : MonoBehaviour {
       // Notify the grabbable object that is was released.
       GrabbableObject grabbable = active_object_.GetComponent<GrabbableObject>();
       if (grabbable != null) {
-        grabbable.OnRelease();
-			try {
-					sp.Write(new Byte[1] {0x11}, 0, 1);
-				} catch (System.InvalidOperationException) {
-					print("cant find com port");
-				}
+        grabbable.OnRelease(sp);
 			}
       if (grabbable == null || grabbable.rotateQuickly)
         active_object_.rigidbody.maxAngularVelocity = last_max_angular_velocity_;
