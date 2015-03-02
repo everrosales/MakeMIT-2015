@@ -5,8 +5,6 @@ Project("{7C91DC20-DBF6-B293-4D54-29FDC4FC0781}") = "makeMIT", "Assembly-CSharp.
 EndProject
 Project("{7C91DC20-DBF6-B293-4D54-29FDC4FC0781}") = "makeMIT", "Assembly-CSharp-Editor.csproj", "{5F1BFECE-DE4B-8222-20D4-2B6BA4A03CFB}"
 EndProject
-Project("{7C91DC20-DBF6-B293-4D54-29FDC4FC0781}") = "makeMIT", "Assembly-UnityScript-firstpass.unityproj", "{A360AD96-C45A-EFAF-5545-8B8F5BBD8264}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,15 +19,11 @@ Global
 		{5F1BFECE-DE4B-8222-20D4-2B6BA4A03CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F1BFECE-DE4B-8222-20D4-2B6BA4A03CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F1BFECE-DE4B-8222-20D4-2B6BA4A03CFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A360AD96-C45A-EFAF-5545-8B8F5BBD8264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A360AD96-C45A-EFAF-5545-8B8F5BBD8264}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A360AD96-C45A-EFAF-5545-8B8F5BBD8264}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A360AD96-C45A-EFAF-5545-8B8F5BBD8264}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-		GlobalSection(MonoDevelopProperties) = preSolution
+									GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
