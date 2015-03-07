@@ -4,10 +4,10 @@ using System.IO.Ports;
 using System;
 
 public class FixedCube : MonoBehaviour {
-    public static SerialPort sp;
+    //public static SerialPort sp;
 	// Use this for initialization
 	void Start () {
-	    sp = GrabbingHand.sp;
+	    //sp = GrabbingHand.sp;
 
 	}
 	
@@ -18,7 +18,7 @@ public class FixedCube : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     { 
-        if(collision.gameObject.tag.Equals("Index"))
+        /*if(collision.gameObject.tag.Equals("Index"))
         {
             try
             {
@@ -41,12 +41,12 @@ public class FixedCube : MonoBehaviour {
             {
                 print("cant find com port");
             }
-        }
+        }*/
     }
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Index"))
+        /*if (collision.gameObject.tag.Equals("Index"))
         {
             try
             {
@@ -69,6 +69,6 @@ public class FixedCube : MonoBehaviour {
             {
                 print("cant find com port");
             }
-        }
+        }*/
     }
 }

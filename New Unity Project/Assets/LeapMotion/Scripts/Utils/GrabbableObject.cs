@@ -41,17 +41,17 @@ public class GrabbableObject : MonoBehaviour {
     hovered_ = false;
   }
 
-  public virtual void OnGrab(SerialPort sp) {
+  public virtual void OnGrab() {
     grabbed_ = true;
     hovered_ = false;
 	
 	// Write out serial out
-	try {
+	/*try {
 		sp.Write(new Byte[1] {0xFF}, 0, 1);
 		print ("grabbed");
 	} catch (System.InvalidOperationException) {
 		print("cant find com port");
-    }
+    }*/
         
         if (breakableJoint != null) {
       Joint breakJoint = breakableJoint.GetComponent<Joint>();
@@ -62,14 +62,14 @@ public class GrabbableObject : MonoBehaviour {
     }
   }
 
-  public virtual void OnRelease(SerialPort sp) {
+  public virtual void OnRelease() {
     grabbed_ = false;
 
-	try {
+	/*try {
 		sp.Write(new Byte[1] {0x11}, 0, 1);
 	} catch (System.InvalidOperationException) {
 		print("cant find com port");
-    }
+    }*/
         
         if (breakableJoint != null) {
       Joint breakJoint = breakableJoint.GetComponent<Joint>();
