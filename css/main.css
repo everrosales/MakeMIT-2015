@@ -203,28 +203,33 @@ html, body {
   background-size: 100%;
 }
 
-#erosales-card > header {
+#erosales > header {
   background: url('../static/team/erosales.jpg') bottom 50% left 40% no-repeat #46B6AC;
   background-size: 115%;
 }
 
-#jsloane-card > header {
+#jsloane > header {
   background: url('../static/team/jsloane.jpg') bottom 50% right 0% no-repeat #46B6AC;
   background-size: 115%;
 }
 
-#pozhu-card > header {
+#pozhu > header {
   background: url('../static/team/pozhu.jpg') bottom 55% left 45% no-repeat #46B6AC;
   background-size: 100%;
 }
 
-#tneedham-card > header {
+#tneedham > header {
   background: url('../static/team/tneedham.jpg') bottom 50% left 40% no-repeat #46B6AC;
   background-size: 100%;
 }
 
-#mbhat-card > header {
+#mbhat > header {
   background: url('../static/team/mbhat.jpg') bottom 50% right 0% no-repeat #46B6AC;
+  background-size: 115%;
+}
+
+#team16-overview {
+  background: url('../static/team/teamprize.jpg') top 40% right 50% no-repeat #46B6AC;
   background-size: 115%;
 }
 
@@ -245,6 +250,15 @@ html, body {
   background-color: #607B8D ! important;
 }
 
+a {
+  color: #00BCD4;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #607B8D;
+}
+
 .center-icon {
   color: #ffffff;
   font-size: 2em;
@@ -253,4 +267,8 @@ html, body {
 
 .section__circle-container__circle {
   text-align: center;
+}
+
+.feature-image {
+  width: 100%;
 }
