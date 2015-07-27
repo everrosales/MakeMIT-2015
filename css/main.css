@@ -195,47 +195,47 @@ html, body {
 
 #header-card {
   background: url('../static/v2-image.jpg') bottom 50% left 50% no-repeat #46B6AC;
-  background-size: 115%;
+  background-size: cover;
 }
 
 #team-header-card {
   background: url('../static/team/team.jpg') bottom 50% left 50% no-repeat #46B6AC;
-  background-size: 100%;
+  background-size: cover;
 }
 
 #erosales > header {
   background: url('../static/team/erosales.jpg') bottom 50% left 40% no-repeat #46B6AC;
-  background-size: 115%;
+  background-size: cover;
 }
 
 #jsloane > header {
   background: url('../static/team/jsloane.jpg') bottom 50% right 0% no-repeat #46B6AC;
-  background-size: 115%;
+  background-size: cover;
 }
 
 #pozhu > header {
   background: url('../static/team/pozhu.jpg') bottom 55% left 45% no-repeat #46B6AC;
-  background-size: 100%;
+  background-size: cover;
 }
 
 #tneedham > header {
   background: url('../static/team/tneedham.jpg') bottom 50% left 40% no-repeat #46B6AC;
-  background-size: 100%;
+  background-size: cover;
 }
 
 #mbhat > header {
   background: url('../static/team/mbhat.jpg') bottom 50% right 0% no-repeat #46B6AC;
-  background-size: 115%;
+  background-size: cover;
 }
 
 #team16-overview {
   background: url('../static/team/teamprize.jpg') top 40% right 50% no-repeat #46B6AC;
-  background-size: 115%;
+  background-size: cover;
 }
 
 .mdl-layout__header {
   background: url('../static/v2-maniquin.jpg') bottom 50% left 50% no-repeat #46B6AC;
-  background-size: 100%;
+  background-size: cover;
 }
 
 .site-banner-header {
@@ -271,4 +271,8 @@ a:hover {
 
 .feature-image {
   width: 100%;
+}
+
+.center-text {
+  text-align: center;
 }

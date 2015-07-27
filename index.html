@@ -17,20 +17,16 @@
 
       clickFeatures = function() {
         document.getElementById('features-tab-button').click();
-        setTimeout(function() {
-          window.location.href = "#features-ff-header";
-        }, 100);
+        window.location.href = "#features-ff-header";
       }
 
       clickTeams = function(name) {
         document.getElementById('team-tab-button').click();
-        setTimeout(function() {
-          if (name) {
-            window.location.href = "#" + name;
-          } else {
-            window.location.href = "#team";
-          }
-        }, 0);
+        if (name) {
+          window.location.href = "#" + name;
+        } else {
+          window.location.href = "#team";
+        }
       }
     </script>
   </head>
@@ -69,7 +65,7 @@
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                <h4 class="mdl-cell mdl-cell--12-col">Details</h4>
+                <h4 class="mdl-cell mdl-cell--12-col">Highlights</h4>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary">
                     <div class="material-icons-container">
@@ -153,7 +149,8 @@
                 <h4>Contents</h4>
                 <a href="#features1">Overview</a>
                 <a href="#features2">Key Features</a>
-                <a href="#features3">Initial Development</a>
+                <a href="#features3">Initial Prototype and Development</a>
+                <a href="#features4">Second Generation Improvements</a>
               </ul>
 
               <h5 id="features1">Overview</h5>
@@ -186,7 +183,7 @@
                   project environments.</li>
               </ul>
 
-              <h5 id="features3">Initial Development</h5>
+              <h5 id="features3">Initial Prototype and Development</h5>
               <p>
                 We created the initial prototype at <strong>Phase I</strong> of
                 <a href="http://makemit.org">MakeMIT</a>, a hardware hackathon
@@ -202,6 +199,10 @@
                 actuated components can do is prevent the user's finger from being able
                 to push down more than it already has.
               </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/v1-cad-mockup.jpg"/>
+                CAD mockup for our laser cut parts for the initial prototypes.
+              </p>
               <p>
                 We did this by creating finger modules that are comprised of 3
                 parts: the arm, the spool, and the break. The arm provides an
@@ -213,9 +214,40 @@
                 spool and apply a range of friction forces to the spool to give
                 the allusion of touching objects with different viscosities.
               </p>
-              <p>
-                <img class="feature-image" src="static/v1-cad-mockup.jpg"/>
+              <p class="center-text">
+                <img class="feature-image" src="static/v1-image.jpg"/>
+                Picture of our assembled prototype from MakeMIT Phase I.
               </p>
+              <p>
+                In terms of electrical components, we used an simple
+                Arduino communicating with a computer via serial, using signals
+                from the computer to manipulate two servo motors.  For safety we
+                required a constant "Watchdog" signal, which if not received
+                would release all brakes in the glove. This way if there was a
+                software error or crash the user would not be stuck. Both power
+                and communication was sent through the USB tether.
+              </p>
+              <p>
+                On the software demo side, we made heavy use of Unity and example
+                projects that resided within the Leap Motion and Oculus SDK's.
+                Because Unity scripts can be written in C#, we simply used the
+                default serial library in C# to communicate with the glove
+                through a USB host. This script has public interfaces to send
+                different signals to the glove from within a scene. Since we
+                wanted to add varying levels of resistance collisions of
+                different types, we created additional scripts that would
+                interface with our glove to dictate the degree of resistance
+                that was desired. However this meant that any collidable object
+                that we wanted to be able to feel with the glove would need to
+                use implement this script and add its resistance factor, this
+                script would then be in charge of calling a method on our main
+                script that would. In regards to the Watch Dog signal that was
+                described earlier, our main script that was in charge of handling
+                the constant checking in to ensure that the device and evniroment
+                is all properly configured.
+
+              </p>
+              <h5 id="features4">Second Generation Improvements</h5>
             </div>
           </section>
         </div>
@@ -228,7 +260,7 @@
             <div class="mdl-card mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text">
                 <h4>Team 16</h4>
-                The team got together to work at <a href="http://makemit.org">MakeMIT</a> (2015).
+                The team got together to work on this project idea at <a href="http://makemit.org">MakeMIT</a> (2015).
               </div>
               <!-- <div class="mdl-card__actions">
                 <a href="#" class="mdl-button">Read our features</a>
@@ -238,7 +270,16 @@
           <section id="erosales" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text">
-                <h4>Everardo Rosales</h4>
+                <h4>Everardo Rosales <a href="http://everrosales.github.io"><i class="material-icons" role="presentation">launch</i></a></h4>
+                Fullstack Web developer and general software developer. Currently
+                a Junior at MIT majoring in Computer Science and loves building, hacking,
+                and creating random projects.
+                <br><br>
+                Was in charge of the software sides of the demo and applications.
+                I was in charge of integrating the Leap Motion and Oculus Rift to
+                create the demo used at MakeMIT as well as the interface between
+                the on board electronics and the controller application that would
+                run on a computer.
               </div>
             </div>
             <header class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
@@ -267,7 +308,18 @@
             </header>
             <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text">
-                <h4>Thomas Needham</h4>
+                <h4>Thomas Needham <a href="http://tneedham.github.io/Portfolio"><i class="material-icons" role="presentation">launch</i></a></h4>
+                  Hands-on mechatronics Junior at MIT interested in working on
+                  the behind-the-scenes portions of new tech. Structures,
+                  controls, robotics, automation, and solving problems such that
+                  the user doesn't even notice.
+                  <br><br>
+                  For the first generation Force Feel'd, he designed both
+                  generations of our braking mechanism, finger supports and
+                  forearm mount, and ancillary mechanicals for both models.
+                  Additionally, manufacture and assembly of "hard" components
+                  (non-ergonomic) especially for the second generation Force
+                  Feel'd - with access to a full shop beyond just laser cutters and 3D printers.
               </div>
             </div>
           </section>
