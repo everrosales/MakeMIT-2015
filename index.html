@@ -11,13 +11,22 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/material.min.js" type="text/javascript"></script>
     <script>
-      clickOverview = function() {
+      clickOverview = function(target) {
         document.getElementById('overview-tab-button').click();
+        if (target) {
+          window.location.href = '#overview' + target;
+        } else {
+          window.location.href = '#overview1';
+        }
       }
 
-      clickFeatures = function() {
+      clickFeatures = function(target) {
         document.getElementById('features-tab-button').click();
-        window.location.href = "#features-ff-header";
+        if (target) {
+          window.location.href = '#features' + target;
+        } else {
+          window.location.href = "#features-ff-header";
+        }
       }
 
       clickTeams = function(name) {
@@ -53,7 +62,7 @@
               <!-- <i class="material-icons">play_circle_filled</i> -->
             </header>
             <div class="mdl-card mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
+              <div id="overview1" class="mdl-card__supporting-text">
                 <h4>Force-feedback for VR</h4>
                 Force Feel'd was a hackathon project aimed at exploring the applications of haptics within virtual reality.
               </div>
@@ -64,7 +73,7 @@
           </section>
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+              <div id="overview2" class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
                 <h4 class="mdl-cell mdl-cell--12-col">Highlights</h4>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary">
@@ -115,17 +124,9 @@
                 <a href="#" onclick="clickFeatures()" class="mdl-button">Read our features</a>
               </div>
             </div>
-            <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn2">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul> -->
           </section>
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--8-col">
+            <div id="overview3" class="mdl-card mdl-cell mdl-cell--8-col">
               <div class="mdl-card__supporting-text">
                 <h4>Team 16</h4>
 
@@ -248,6 +249,50 @@
 
               </p>
               <h5 id="features4">Second Generation Improvements</h5>
+              <p>
+                While working on improvements for the second version of our product,
+                we had two goals in mind: make the platform easier incorporate
+                into other projects and make the glove wireless.
+              </p>
+              <p>
+                Since we made heavy use of Unity previously, we continued to
+                expand on what we had and greatly improved the assets that we
+                used to interface with the glove. This time around, we
+                reimplemented our scripts such that it would use the physics of
+                the objects that are being interacted with to dictate how much
+                resistance was to be provided. This didn't require additional
+                scripts that would need to be added to each object that would be
+                collided with, instead the hand asset would be able to detect
+                collisions and from there send the message to glove with how
+                much resistivity was needed for the collision.
+              </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/v2-image-on.jpg"/>
+                Picture of the second prototype and Leap Motion Sensor.
+              </p>
+              <p>
+                To accomplish the second goal, we added a Bluetooth sensor and
+                battery pack along with using a smaller microcontroller to have
+                this package fit more easily on the forearm. This all required
+                us to move away from the straight serial implementation that we
+                had before to instead using Bluetooth to communicate to the
+                glove. This required that we start up a Bluetooth server and
+                have our demos connect to the glove to start transmission.
+                Furthermore, our new watchdog signal would be whether the glove
+                is connected to our demo or not.
+              </p>
+              <p>
+                In terms of the other hardware, the focus was to make the footprint
+                of the different compoenents smaller, thus making the whole glove
+                easier to wear. As such we created smaller, vertical brakes as
+                well using fabric for the base of the glove. We also shrunk the footprint
+                of the electical components by using a smaller arduino and a small
+                bluetooh receiver.
+              </p>
+              <p class="center-text">
+                <img class="feature-image" src="static/v2-maniquin.jpg"/>
+                Close-up photo of second generation prototype.
+              </p>
             </div>
           </section>
         </div>
@@ -337,12 +382,21 @@
           <div class="mdl-mega-footer--middle-section">
             <div class="mdl-mega-footer--drop-down-section">
               <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Overview</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a onclick="clickOverview()">Force-feedback for VR</a></li>
+                <li><a onclick="clickOverview()">Highlights</a></li>
+                <li><a onclick="clickOverview()">Team 16</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
               <h1 class="mdl-mega-footer--heading">Features</h1>
               <ul class="mdl-mega-footer--link-list">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Partners</a></li>
-                <li><a href="#">Updates</a></li>
+                <li><a onclick="clickFeatures(1)">Overview</a></li>
+                <li><a onclick="clickFeatures(2)">Key Features</a></li>
+                <li><a onclick="clickFeatures(3)">Initial Prototype and Development</a></li>
+                <li><a onclick="clickFeatures(4)">Second Generation Improvements</a></li>
               </ul>
             </div>
             <div class="mdl-mega-footer--drop-down-section">
